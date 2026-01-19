@@ -64,7 +64,7 @@ const Login = () => {
         </div>
 
         <div className="mt-10 text-gray-500">
-          New to Distreaming? <span className="text-white hover:underline cursor-pointer font-semibold">Sign up now!</span>
+          New to Distreaming? <span className="text-white hover:underline cursor-pointer font-semibold"><Link to="/register" className="text-white hover:underline cursor-pointer font-semibold">Sign up now!</Link></span>
         </div>
       </div>
     </div>
