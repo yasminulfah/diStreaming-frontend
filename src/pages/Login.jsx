@@ -8,20 +8,26 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('https://distreaming-backend1-production.up.railway.app/api/login', {
-        email,
-        password
-      })
-      // Simpan token ke localStorage
-      localStorage.setItem('token', response.data.token)
-      alert('Login Berhasil!')
-      navigate('/') // Balik ke Home
-    } catch (error) {
-      alert('Login Gagal! Cek email & password kamu.')
-    }
+  e.preventDefault()
+  try {
+    const response = await axios.post('https://distreaming-backend1-production.up.railway.app/api/login', {
+      email,
+      password
+    })
+
+    localStorage.setItem('access_token', response.data.token);
+    
+    alert('Login Berhasil!');
+    
+    // Pindah ke Home
+    navigate('/')
+  
+    window.location.reload()
+    
+  } catch (error) {
+    alert('Login Gagal! Cek email & password kamu.');
   }
+}
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center">
