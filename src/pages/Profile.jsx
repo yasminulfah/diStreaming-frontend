@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { HiLogout, HiOutlineMail, HiOutlineUser } from 'react-icons/hi'
 
@@ -10,7 +10,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const token = localStorage.getItem('access-token')
+      const token = localStorage.getItem('access_token')
       
       if (!token) {
         navigate('/login')
@@ -28,7 +28,7 @@ const Profile = () => {
         setUser(response.data); 
       } catch (err) {
         console.error("Gagal mengambil data user:", err)
-        localStorage.removeItem('access-token')
+        localStorage.removeItem('access_token')
         navigate('/login')
       } finally {
         setLoading(false)
@@ -39,10 +39,10 @@ const Profile = () => {
   }, [navigate])
 
   const handleLogout = () => {
-    localStorage.removeItem('access-token')
-    navigate('/login')
+    localStorage.removeItem('access_token')
+    navigate('/')
     window.location.reload()
-  };
+  }
 
   if (loading) return <div className="min-h-screen bg-[#141414] flex items-center justify-center text-white">Loading...</div>
 
@@ -53,9 +53,9 @@ const Profile = () => {
         
         <div className="flex flex-col items-center mb-8">
           <div className="w-24 h-24 bg-yellow-500 rounded-full flex items-center justify-center text-black text-3xl font-black mb-4">
-            {user?.name?.charAt(0).toUpperCase() || 'U'}
+            {user?.username?.charAt(0).toUpperCase() || 'U'}
           </div>
-          <h2 className="text-xl font-bold">{user?.name || 'User Name'}</h2>
+          <h2 className="text-xl font-bold">{user?.username || 'Username'}</h2>
         </div>
 
         <div className="space-y-4">
@@ -63,7 +63,7 @@ const Profile = () => {
             <HiOutlineUser className="text-yellow-500" size={24} />
             <div>
               <p className="text-xs text-gray-500 uppercase font-bold">Full Name</p>
-              <p className="font-medium">{user?.name}</p>
+              <p className="font-medium">{user?.username}</p>
             </div>
           </div>
 
@@ -77,12 +77,12 @@ const Profile = () => {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <button 
+          <Link tp="/" 
             onClick={handleLogout}
             className="flex items-center gap-2 text-red-500 font-bold hover:bg-red-500/10 px-8 py-3 rounded-full border border-red-500/20 transition duration-300 active:scale-95"
           >
             <HiLogout size={20} /> Logout from all devices
-          </button>
+          </Link>
         </div>
       </div>
     </div>

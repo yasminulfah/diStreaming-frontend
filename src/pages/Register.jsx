@@ -22,33 +22,23 @@ const Register = () => {
   }
 
   const handleRegister = async (e) => {
-    e.preventDefault()
-    setError(null)
-    setLoading(true)
-
-    if (formData.password !== formData.password_confirmation) {
-      setError("Password dan Konfirmasi Password tidak cocok!");
-      setLoading(false)
-      return
-    }
-
-    try {
-      const response = await axios.post('https://distreaming-backend1-production.up.railway.app/api/register', {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        password_confirmation: formData.password_confirmation
-      })
-
-      alert('Registrasi Berhasil! Silakan Login.')
-      navigate('/login') 
-    } catch (err) {
-      const serverError = err.response?.data?.message || err.response?.data?.errors;
-      setError(typeof serverError === 'object' ? Object.values(serverError)[0][0] : serverError);
-    } finally {
-      setLoading(false);
-    }
+  e.preventDefault();
+  try {
+    const response = await axios.post('https://distreaming-backend1-production.up.railway.app/api/register', {
+      username: formData.name,  
+      email: formData.email,
+      password: formData.password,
+      password_confirmation: formData.password_confirmation
+    });
+    
+    alert('Registrasi Berhasil!');
+    navigate('/login');
+  } catch (err) {
+    // Biar kamu tau error aslinya apa
+    const pesanError = err.response?.data?.message || "Terjadi kesalahan";
+    setError(pesanError);
   }
+};
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-[#141414] px-4">
@@ -64,7 +54,7 @@ const Register = () => {
         <form onSubmit={handleRegister} className="space-y-5">
           <div>
             <input 
-              name="username"
+              name="name"
               type="text" 
               placeholder="Username" 
               className="w-full p-4 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
