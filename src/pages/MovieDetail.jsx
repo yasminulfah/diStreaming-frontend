@@ -39,7 +39,9 @@ const MovieDetail = () => {
     try {
       await axios.post('https://distreaming-backend1-production.up.railway.app/api/watchlist', 
         { movie_id: id },
-        { headers: { Authorization: `Bearer ${token}` } })
+        { headers: { 
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json'} })
       alert("Berhasil ditambahkan ke Watchlist!")
     } catch (err) {
       alert(err.response?.data?.message || "Gagal menambah ke watchlist.")
@@ -93,7 +95,7 @@ const MovieDetail = () => {
             </button>
             
             <button 
-              onClick={handleAddToWatchlist}
+              onClick={() => handleAddToWatchlist(movie.id)}
               disabled={adding}
               className={`px-10 py-3 rounded-full font-bold backdrop-blur-md transition-all border border-white/20 flex items-center gap-2 ${
                 adding ? 'bg-gray-700 cursor-not-allowed' : 'bg-white/10 hover:bg-white/20'

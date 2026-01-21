@@ -34,7 +34,6 @@ const Register = () => {
     alert('Registrasi Berhasil!');
     navigate('/login');
   } catch (err) {
-    // Biar kamu tau error aslinya apa
     const pesanError = err.response?.data?.message || "Terjadi kesalahan";
     setError(pesanError);
   }

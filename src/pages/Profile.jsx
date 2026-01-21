@@ -14,7 +14,7 @@ const Profile = () => {
       
       if (!token) {
         navigate('/login')
-        return;
+        return
       }
 
       try {
@@ -25,7 +25,7 @@ const Profile = () => {
           }
         });
         
-        setUser(response.data); 
+        setUser(response.data.data) 
       } catch (err) {
         console.error("Gagal mengambil data user:", err)
         localStorage.removeItem('access_token')
@@ -40,8 +40,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('access_token')
-    navigate('/')
-    window.location.reload()
+    window.location.href = '/'
   }
 
   if (loading) return <div className="min-h-screen bg-[#141414] flex items-center justify-center text-white">Loading...</div>

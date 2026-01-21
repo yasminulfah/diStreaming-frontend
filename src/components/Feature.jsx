@@ -27,8 +27,8 @@ const Feature = () => {
     ]
 
     return (
-        <div className="py-20 bg-black px-8">
-            <div className="grid md:grid-cols-4 gap-10 md:gap-5 text-center max-w-6xl mx-auto">
+        <div className="py-20 px-4 md:px-10 bg-black px-8">
+            <div className="grid md:grid-cols-4 gap-5 md:gap-10 text-center max-w-6xl mx-auto">
                 {features.map((f) => (
                     <div key={f.id} className="space-y-4 bg-[#141414] rounded-lg p-5">
                         <div className="text-5xl">{f.icon}</div>

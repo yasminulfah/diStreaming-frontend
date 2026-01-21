@@ -15,7 +15,6 @@ const Login = () => {
       password
     });
 
-    // Ini trik supaya tidak undefined: cek mana yang dikirim backend
     const tokenAsli = response.data.token || response.data.access_token || response.data.data?.token;
     
     if (tokenAsli) {
