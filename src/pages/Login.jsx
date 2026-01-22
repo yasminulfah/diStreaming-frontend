@@ -8,30 +8,37 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+  e.preventDefault()
   try {
     const response = await axios.post('https://distreaming-backend1-production.up.railway.app/api/login', {
       email,
       password
-    });
+    })
 
-    const tokenAsli = response.data.token || response.data.access_token || response.data.data?.token;
-    
-    if (tokenAsli) {
-      localStorage.setItem('access_token', tokenAsli);
-      alert('Login Berhasil!');
-      navigate('/');
-      window.location.reload();
+    const token = response.data.token || response.data.access_token || response.data.data?.token
+    const userData = response.data.user || response.data.data?.user
+
+    if (token) {
+      localStorage.setItem('access_token', token)
+      
+      if (userData) {
+        localStorage.setItem('user', JSON.stringify(userData))
+      }
+
+      alert('Login Successful!')
+      navigate('/')
+      window.location.reload()
     } else {
-      console.log("Struktur data dari server:", response.data);
-      alert("Token tidak ditemukan dalam respon server");
+      console.log("Server response structure:", response.data)
+      alert("Token not found in server response.")
     }
     
   } catch (error) {
-    console.error("Detail Error:", error.response?.data);
-    alert('Login Gagal! Cek email & password kamu.');
+    console.error("Login Error Details:", error.response?.data);
+    const errorMessage = error.response?.data?.message || "Login Failed! Please check your email and password."
+    alert(errorMessage)
   }
-};
+}
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center">
