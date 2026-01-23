@@ -1,16 +1,28 @@
-# React + Vite
+# 🎬 DiStreaming - Movie Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi manajemen database film yang dibangun dengan **React.js** dan **Tailwind CSS**, terintegrasi dengan backend **Laravel** yang di-hosting di Railway.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Fitur Utama
+* **Authentication:** Login sistem menggunakan Bearer Token (JWT).
+* **Movie Management:** List film dengan tampilan tabel modern.
+* **CRUD Operations:** Menambah (Create), Melihat (Read), dan Menghapus (Delete) film.
+* **Data Validation:** Penanganan error validasi 422 secara real-time.
 
-## React Compiler
+## ✨ Fitur Tambahan (Extra Features)
+* **Responsive Grid Modal:** Form input film dengan layout grid 2-kolom yang rapi.
+* **Scrollable Interface:** Modal yang mendukung scroll agar nyaman digunakan di layar kecil.
+* **Modern UI/UX:** Menggunakan icon dari **Lucide-React** dan styling **Tailwind CSS**.
+* **Advanced Validation Handling:** Mampu menangani relasi database yang kompleks (Category, Director, & Actors).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📚 Library yang Digunakan
+* **React.js** (Frontend Library)
+* **Axios** (API Requests)
+* **Tailwind CSS** (Styling)
+* **Lucide React** & **React Icons** (Icons)
+* **React Router DOM** (Navigation)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🔗 Links
+* **Backend API:** `https://distreaming-backend1-production.up.railway.app`
+* **Repository:** `https://github.com/yasminulfah/diStreaming-frontend.git`
