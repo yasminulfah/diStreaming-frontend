@@ -49,7 +49,7 @@ const UserList = () => {
                                     {user.role}
                                 </span>
                                 <Link 
-                                    to={`/users/${user.user_id}`} 
+                                    to={`/admin/users/${user.user_id}`} 
                                     className="text-white text-sm hover:underline"
                                 >
                                     Details
