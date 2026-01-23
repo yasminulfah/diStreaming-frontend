@@ -46,7 +46,7 @@ const Navbar = () => {
             isScrolled ? 'bg-[#141414] shadow-lg' : 'bg-transparent'
         }`}>
             <div className="flex items-center">
-                <p to="/" className="flex items-center gap-1">
+                <p className="flex items-center gap-1">
                     <p className="text-yellow-500 text-xl font-bold italic">diStreaming</p>
                     <p className="text-white text-xl font-medium">Movie</p>
                 </p>

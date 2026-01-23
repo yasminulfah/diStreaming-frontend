@@ -20,7 +20,7 @@ const Hero = () => {
                     <h1 className="text-2xl md:text-xl font-black uppercase leading-none">Avatar: Fire and Ash</h1>
                     <p className="text-gray-200 text-lg md:text-xl leading-relaxed drop-shadow-md">Dive back into the stunning world of Pandora. Witness the next chapter of the epic saga.</p>
                     <div className="flex gap-4 pt-4">
-                        <Link to="/login" 
+                        <Link to="/" 
                         className="bg-white text-black px-10 py-3 rounded-md font-bold text-lg hover:bg-gray-200 transition-all flex items-center gap-2"><span>▶</span> Play</Link>
                         <Link 
                           to="/subscribe" 

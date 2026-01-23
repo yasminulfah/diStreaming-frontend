@@ -1,48 +1,48 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Film } from 'lucide-react'; // Pakai Lucide agar konsisten
-import axios from 'axios';
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { ArrowLeft, Film } from 'lucide-react'
+import axios from 'axios'
 
 const UserDetail = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const [userData, setUserData] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getUserDetail = async () => {
             try {
-                const token = localStorage.getItem('access_token');
+                const token = localStorage.getItem('access_token')
                 const response = await axios.get(`https://distreaming-backend1-production.up.railway.app/api/users/${id}`, {
                     headers: { 
                         Authorization: `Bearer ${token}`,
                         Accept: 'application/json'
                     }
-                });
+                })
                 
                 const result = response.data.data || response.data;
-                setUserData(result);
-                setLoading(false);
+                setUserData(result)
+                setLoading(false)
             } catch (err) {
-                console.error("Failed to get user detail:", err);
-                setLoading(false);
+                console.error("Failed to get user detail:", err)
+                setLoading(false)
             }
-        };
+        }
 
-        if (id) getUserDetail();
-    }, [id]);
+        if (id) getUserDetail()
+    }, [id])
 
     if (loading) return (
         <div className="min-h-screen bg-[#141414] flex items-center justify-center text-white italic">
             Loading User Detail...
         </div>
-    );
+    )
 
     if (!userData) return (
         <div className="min-h-screen bg-[#141414] flex items-center justify-center text-white">
             User not found.
         </div>
-    );
+    )
 
     return (
         <div className="min-h-screen bg-[#141414] px-8 py-24 text-white">
@@ -98,7 +98,7 @@ const UserDetail = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default UserDetail;
+export default UserDetail

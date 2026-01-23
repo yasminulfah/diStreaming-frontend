@@ -16,7 +16,8 @@ const MovieDetail = () => {
         setLoading(true)
         const response = await axios.get(`https://distreaming-backend1-production.up.railway.app/api/movies/${id}`)
         
-        const data = response.data.data || response.data;
+        const data = response.data.data || response.data
+        
         setMovie(data)
       } catch (err) {
         setError("Gagal memuat detail film.")
@@ -29,26 +30,40 @@ const MovieDetail = () => {
   }, [id])
 
   const handleAddToWatchlist = async () => {
-    const token = localStorage.getItem('access_token')
+    const token = localStorage.getItem('access_token');
     if (!token) {
-      alert("Silahkan login terlebih dahulu!")
-      return
+      alert("Silahkan login terlebih dahulu!");
+      return;
     }
 
-    setAdding(true)
+    setAdding(true);
     try {
-      await axios.post('https://distreaming-backend1-production.up.railway.app/api/watchlist', 
-        { movie_id: id },
-        { headers: { 
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json'} })
-      alert("Berhasil ditambahkan ke Watchlist!")
+      // 1. Pastikan id dikonversi ke Number
+      // 2. Kirim sesuai struktur yang diminta backend
+      const response = await axios.post(
+        'https://distreaming-backend1-production.up.railway.app/api/watchlist',
+        { movie_id: parseInt(id) }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+        }
+      );
+
+      alert("Berhasil ditambahkan ke Watchlist!");
     } catch (err) {
-      alert(err.response?.data?.message || "Gagal menambah ke watchlist.")
+      // Cek apakah error karena sudah ada di watchlist (Unique Constraint)
+      if (err.response?.status === 409 || err.response?.status === 422) {
+        alert("Film ini sudah ada di watchlist kamu!");
+      } else {
+        console.error("Detail Error:", err.response?.data);
+        alert(err.response?.data?.message || "Server error. Cek koneksi atau database.");
+      }
     } finally {
-      setAdding(false)
+      setAdding(false);
     }
-  }
+  };
 
   if (loading) return (
     <div className="h-screen flex items-center justify-center bg-[#141414] text-white font-bold">
@@ -109,15 +124,19 @@ const MovieDetail = () => {
             <div>
               <h4 className="text-gray-500 uppercase text-xs font-bold tracking-widest mb-2">Director</h4>
               <div className="text-white font-medium">
-                {typeof movie.director === 'string' ? movie.director : 'Information not available'}
+                {movie.director ? `${movie.director.first_name} ${movie.director.last_name}` : 'Information not available'}
               </div>
             </div>
             <div>
               <h4 className="text-gray-500 uppercase text-xs font-bold tracking-widest mb-2">Cast</h4>
               <div className="text-white text-sm leading-relaxed">
-                {Array.isArray(movie.actors) 
-                  ? movie.actors.join(', ') 
-                  : (typeof movie.actors === 'string' ? movie.actors : 'Cast not available')}
+                {movie.actors && movie.actors.length > 0 ? (
+                    movie.actors.map((actor) => (
+                      <span key={actor.actor_id} className="bg-gray-800 px-3 py-1 rounded-full text-sm">
+                        {actor.first_name} {actor.last_name}
+                      </span>))
+                  ) : (
+                    <p>No actors listed</p>)}
               </div>
             </div>
           </div>
