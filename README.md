@@ -1,6 +1,6 @@
-# 🎬 DiStreaming - Movie Management System
+# 🎬 DiStreaming - Movie Website
 
-Aplikasi manajemen database film yang dibangun dengan **React.js** dan **Tailwind CSS**, terintegrasi dengan backend **Laravel** yang di-hosting di Railway.
+Aplikasi streaming film yang dibangun dengan **React.js** dan **Tailwind CSS**, terintegrasi dengan backend **Laravel** yang di-hosting di Railway.
 
 ---
 
