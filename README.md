@@ -5,7 +5,7 @@ Aplikasi streaming film yang dibangun dengan **React.js** dan **Tailwind CSS**, 
 ---
 
 ## 🚀 Fitur 
-* **Authentication:** Login sistem menggunakan Bearer Token (JWT).
+* **Authentication:** Login sistem menggunakan Bearer Token (Laravel Sanctum).
 * **Movie Management:** List film dengan tampilan tabel modern.
 * **CRUD Operations:** Menambah (Create), Melihat (Read), dan Menghapus (Delete) film.
 * **Data Validation:** Penanganan error validasi 422 secara real-time.
