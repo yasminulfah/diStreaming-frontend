@@ -237,7 +237,16 @@ const ManageMovies = () => {
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-gray-500 uppercase mb-1 block">Category ID</label>
-                                    <input type="number" required className="w-full bg-[#202020] border border-gray-700 rounded-lg p-3 text-white" value={newMovie.category_id} onChange={(e) => setNewMovie({...newMovie, category_id: e.target.value})} />
+                                    <select type="number" required className="w-full bg-[#202020] border border-gray-700 rounded-lg p-3 text-white" value={newMovie.category_id} onChange={(e) => setNewMovie({...newMovie, category_id: e.target.value})}>
+                                        <option value="1">Action</option>
+                                        <option value="7">Adventure</option>
+                                        <option value="5">Animation</option>
+                                        <option value="2">Drama</option>
+                                        <option value="3">Horror</option>
+                                        <option value="6">Romance</option>
+                                        <option value="4">Sci-Fi</option>
+                                        <option value="8">Thriller</option>
+                                    </select>
                                 </div>
                             </div>
 
